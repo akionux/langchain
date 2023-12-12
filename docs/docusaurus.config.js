@@ -14,9 +14,6 @@ const config = {
   title: "🦜️🔗 Langchain",
   tagline: "LangChain Python Docs",
   favicon: "img/favicon.ico",
-  customFields: {
-    mendableAnonKey: process.env.MENDABLE_ANON_KEY,
-  },
   // Set the production url of your site here
   url: "https://python.langchain.com",
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -25,6 +22,11 @@ const config = {
 
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "throw",
+
+  themes: ["@docusaurus/theme-mermaid"],
+  markdown: {
+    mermaid: true,
+  },
 
   plugins: [
     () => ({
@@ -160,28 +162,95 @@ const config = {
             label: "Integrations",
           },
           {
-            to: "https://api.python.langchain.com",
+            type: "docSidebar",
+            position: "left",
+            sidebarId: "guides",
+            label: "Guides",
+          },
+          {
+            href: "https://api.python.langchain.com/en/stable/api_reference.html",
             label: "API",
             position: "left",
           },
           {
-            to: "/docs/community",
-            label: "Community",
+            type: "dropdown",
+            label: "More",
             position: "left",
+            items: [
+              {
+                type: "docSidebar",
+                sidebarId: "templates",
+                label: "Templates",
+              },
+              {
+                to: "/docs/community",
+                label: "Community",
+              },
+              {
+                to: "/docs/contributing",
+                label: "Developer's guide",
+              },
+              {
+                to: "/docs/additional_resources/dependents",
+                label: "Dependents",
+              },
+              {
+                label: "Integrations Hub",
+                href: "https://integrations.langchain.com/",
+              },
+              {
+                to: "/docs/additional_resources/tutorials",
+                label: "Tutorials"
+              },
+              {
+                label: "Cookbooks",
+                href: "https://github.com/langchain-ai/langchain/blob/master/cookbook/README.md"
+              },
+              {
+                to: "/docs/additional_resources/youtube",
+                label: "YouTube videos"
+              },
+              { label: "Gallery", href: "https://github.com/kyrolabs/awesome-langchain" }
+            ]
           },
           {
-            to: "https://chat.langchain.com",
-            label: "Chat our docs",
+            type: "dropdown",
+            label: "🦜️🔗",
             position: "right",
+            items: [
+              {
+                href: "https://smith.langchain.com",
+                label: "LangSmith",
+              },
+              {
+                href: "https://docs.smith.langchain.com/",
+                label: "LangSmith Docs",
+              },
+              {
+                href: "https://github.com/langchain-ai/langserve",
+                label: "LangServe GitHub",
+              },
+              {
+                href: "https://github.com/langchain-ai/langchain/tree/master/templates",
+                label: "Templates GitHub",
+              },
+              {
+                label: "Templates Hub",
+                href: "https://templates.langchain.com",
+              },
+              {
+                href: "https://smith.langchain.com/hub",
+                label: "LangChain Hub",
+              },
+              {
+                href: "https://js.langchain.com",
+                label: "JS/TS Docs",
+              },
+            ]
           },
           {
-            to: "https://smith.langchain.com",
-            label: "LangSmith",
-            position: "right",
-          },
-          {
-            to: "https://js.langchain.com/docs",
-            label: "JS/TS Docs",
+            href: "https://chat.langchain.com",
+            label: "Chat",
             position: "right",
           },
           // Please keep GitHub link to the right for consistency.
@@ -238,6 +307,18 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} LangChain, Inc.`,
       },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: "VAU016LAWS",
+
+        // Public API key: it is safe to commit it
+        // this is linked to erick@langchain.dev currently
+        apiKey: "6c01842d6a88772ed2236b9c85806441",
+
+        indexName: "python-langchain",
+
+        contextualSearch: true,
+      },
     }),
 
   scripts: [
@@ -247,6 +328,7 @@ const config = {
       async: true,
     },
   ],
+  
 };
 
 module.exports = config;
